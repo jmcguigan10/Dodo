@@ -8,6 +8,7 @@ data:
   seed: 1337
   pin_memory: true
   drop_last: false
+  target_scale: null  # set to a number (e.g., 1e33) to override automatic scaling
 
 model:
   input_dim: 27

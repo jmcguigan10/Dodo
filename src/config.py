@@ -21,6 +21,7 @@ class DataConfig:
     seed: int
     pin_memory: bool
     drop_last: bool
+    target_scale: Optional[float]
 
 
 @dataclass
@@ -95,6 +96,7 @@ class ExperimentConfig:
             "seed": 42,
             "pin_memory": True,
             "drop_last": False,
+            "target_scale": None,
         }
         model_defaults = {
             "input_dim": 27,

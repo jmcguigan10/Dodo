@@ -65,6 +65,7 @@ class EmuResidualDataset(Dataset):
         self.mean_inv = np.asarray(norm_stats["mean_inv"], dtype=np.float32)
         self.std_inv = np.asarray(norm_stats["std_inv"], dtype=np.float32)
         self._file = None
+        self.target_scale = float(norm_stats["target_scale"])
         with h5py.File(self.h5_path, "r") as f:
             self.inv_sample_axis = _feature_sample_axis(f["invariants"].shape, feature_dim=27)
             flux_shape = f["F_box"].shape
@@ -87,6 +88,12 @@ class EmuResidualDataset(Dataset):
         f_true = _slice_flux(f["F_true"], k, self.sample_axis_flux, self.species_axis, self.comp_axis)  # (6,4)
         resid = (f_true - f_box).reshape(-1)  # consistent residual target
 
+        # Scale to keep magnitudes in a trainable range
+        scale = self.target_scale
+        f_box = f_box / scale
+        f_true = f_true / scale
+        resid = resid / scale
+
         inv_norm = (inv - self.mean_inv) / (self.std_inv + 1e-8)
 
         return (
@@ -102,8 +109,12 @@ class EmuResidualDataset(Dataset):
         return state
 
     def __del__(self):
-        if self._file is not None:
-            self._file.close()
+        f = getattr(self, "_file", None)
+        if f is not None:
+            try:
+                f.close()
+            except Exception:
+                pass
 
 
 def _count_samples(h5_path: Path) -> int:
@@ -158,11 +169,26 @@ def _compute_norm_stats(h5_path: Path, indices: np.ndarray, chunk: int = 2048) -
     return {"mean_inv": mean.astype(np.float32), "std_inv": std.astype(np.float32)}
 
 
+def _compute_target_scale(h5_path: Path, provided: float | None) -> float:
+    if provided is not None and provided > 0:
+        return float(provided)
+
+    with h5py.File(h5_path, "r") as f:
+        ds = f["F_true"]
+        # Load into memory (dataset is modest size) and take a robust percentile to avoid outliers.
+        arr = np.asarray(ds, dtype=np.float64)
+        scale = np.percentile(np.abs(arr), 99)
+        scale = float(scale) if scale > 0 else 1.0
+    return scale
+
+
 def build_dataloaders(cfg: DataConfig) -> Tuple[Dict[str, DataLoader], Dict[str, np.ndarray], Dict[str, np.ndarray]]:
     h5_path = Path(cfg.processed_path)
     n_samples = _count_samples(h5_path)
     train_idx, val_idx, test_idx = _split_indices(n_samples, cfg.val_split, cfg.test_split, cfg.seed)
+    target_scale = _compute_target_scale(h5_path, cfg.target_scale)
     norm_stats = _compute_norm_stats(h5_path, train_idx)
+    norm_stats["target_scale"] = target_scale
 
     datasets = {
         "train": EmuResidualDataset(h5_path, train_idx, norm_stats),

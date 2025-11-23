@@ -113,10 +113,12 @@ def train_and_eval(cfg: ExperimentConfig) -> Dict[str, float]:
     set_seed(cfg.data.seed)
     cfg.ensure_directories()
 
-    loaders, splits, _ = build_dataloaders(cfg.data)
+    loaders, splits, norm_stats = build_dataloaders(cfg.data)
     device = get_device()
     print(f"Using device: {device}")
     print(f"Dataset sizes → train: {len(splits['train'])}, val: {len(splits['val'])}, test: {len(splits['test'])}")
+    if "target_scale" in norm_stats:
+        print(f"Target scale (applied to F_box/F_true/residual): {norm_stats['target_scale']:.3e}")
 
     model = ResidualFFIModel(**cfg.model.__dict__).to(device)
     optimizer = AdamW(
@@ -221,6 +223,7 @@ def train_and_eval(cfg: ExperimentConfig) -> Dict[str, float]:
             "scheduler": cfg.scheduler.__dict__,
             "training": {k: v for k, v in cfg.training.__dict__.items()},
             "loss": cfg.loss.__dict__,
+            "norm_stats": {"target_scale": norm_stats.get("target_scale", None)},
         },
     }
     results_path.write_text(json.dumps(metrics, indent=2))
