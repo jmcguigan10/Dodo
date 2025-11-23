@@ -8,10 +8,8 @@ High‑level mapping at each spacetime point:
 - Baseline: Box3D closure gives \(F_{\text{Box3D}}\).
 - Target: Emu asymptotic fluxes \(F_{\text{true}}\).
 - Network prediction: residual \(\Delta F_{\text{ML}}\) such that
-  \[
-  F_{\text{pred}} = F_{\text{Box3D}} + \Delta F_{\text{ML}}(F_{\text{inv}}),
-  \]
-  where \(F_{\text{inv}}\) are invariant features built from \(F_{\text{init}}\) and \(u^\mu\).
+  $ F_{\text{pred}} = F_{\text{Box3D}} + \Delta F_{\text{ML}}(F_{\text{inv}}),$
+  where $F_{\text{inv}}$ are invariant features built from $F_{\text{init}}$ and $u^\mu$.
 
 See `plan.md` for the physics/math rationale and `Notes.md` for the Box3D details.
 
@@ -25,7 +23,7 @@ Raw HDF5 data live in `data/`, with configuration in `config/pre_process.yaml`. 
 - `scripts/julia_preprocess.jl` and `scripts/get_cfg.jl`: Julia helpers for running Box3D and reading config.
 - `scripts/run_preprocess.py`: Python driver that:
   - Reads raw Emu/SpEC HDF5 files according to `config/pre_process.yaml`.
-  - Calls the Julia Box3D closure on each sample to get \(F_{\text{Box3D}}\).
+  - Calls the Julia Box3D closure on each sample to get $F_{\text{Box3D}}$.
   - Computes invariants (see `plan.md` and `mk_invariant.jl`).
   - Writes a consolidated HDF5 file to `pdata/preprocessed_all.h5`.
 
@@ -64,7 +62,7 @@ The training loader builds a residual dataset from `pdata/preprocessed_all.h5`:
 - `EmuResidualDataset`:
   - Lazily opens the HDF5 file per worker.
   - Automatically infers sample/species/component axes for `F_box`, `F_true`, and `invariants`.
-  - For each index \(k\):
+  - For each index $k$:
     - Reads invariants \(x_k \in \mathbb{R}^{27}\).
     - Reorders `F_box[k]`, `F_true[k]` to `(6, 4)`.
     - Computes residual \(\Delta F_k = F_{\text{true},k} - F_{\text{Box3D},k}\) and flattens to 24 components.
@@ -73,7 +71,7 @@ The training loader builds a residual dataset from `pdata/preprocessed_all.h5`:
   - Compute `mean_inv`, `std_inv` over the **training split only** and normalize invariants as
     \((x - \mu)/\sigma\).
   - Compute a robust `target_scale`:
-    - Default: 99th percentile of \(|F_{\text{true}}|\) (across all components); for this dataset, \(\sim 1.46\times10^{33}\).
+    - Default: 99th percentile of $|F_{\text{true}}|$ (across all components); for this dataset, $\sim 1.46\times10^{33}$.
     - Optional override: `data.target_scale` in `config/model.yaml`.
   - Divide `F_box`, `F_true`, and residuals by `target_scale` before returning them to keep values in a numerically stable range.
 
@@ -94,7 +92,7 @@ The `build_dataloaders` function returns:
 The core model is `ResidualFFIModel`, a fully connected residual network:
 
 - Inputs: 27 normalized invariants per sample.
-- Outputs: 24 residual components \(\Delta F_{\text{ML}}\) (flattened `(6,4)`).
+- Outputs: 24 residual components $\Delta F_{\text{ML}}$ (flattened `(6,4)`).
 - Structure:
   - Input linear layer to a hidden dimension.
   - `hidden_layers` repeated residual blocks:
@@ -124,10 +122,10 @@ This design is lightweight, stable, and expressive enough to learn small correct
 
 - Terms:
   - **Density loss** (`L_n`): relative squared error on the time component.
-  - **Flux magnitude loss** (`L_mag`): relative squared error on \(|\vec{F}|\).
+  - **Flux magnitude loss** (`L_mag`): relative squared error on $|\vec{F}|$.
   - **Direction loss** (`L_dir`): penalizes misalignment between flux direction unit vectors.
-  - **Unphysical penalty** (`L_unphys`): penalizes flux factors \(|\vec{F}|/(c n)\) that exceed 1.
-  - **Residual L1 loss** (`L_resid`): \(L^1\) between `resid_pred` and `resid_true`.
+  - **Unphysical penalty** (`L_unphys`): penalizes flux factors $|\vec{F}|/(c n)$ that exceed 1.
+  - **Residual L1 loss** (`L_resid`): $L^1$ between `resid_pred` and `resid_true`.
 
 - Combined with weights from the `loss` block in `config/model.yaml`:
 
@@ -251,9 +249,9 @@ python3 train.py --config config/model.yaml
 The key design choice is to let the neural network **correct** a robust analytic closure rather than replace it:
 
 - **Physics prior**: Box3D encodes charge conservation, ELN/XLN crossing removal, and asymptotic flavor mixing structure. This keeps the baseline prediction close to physically allowed states.
-- **Smaller dynamic range**: \(\Delta F = F_{\text{true}} - F_{\text{Box3D}}\) is typically much smaller than either term individually, especially after scaling by `target_scale`. This makes the regression numerically easier.
+- **Smaller dynamic range**: $\Delta F = F_{\text{true}} - F_{\text{Box3D}}$ is typically much smaller than either term individually, especially after scaling by `target_scale`. This makes the regression numerically easier.
 - **Better extrapolation**: When the ML model encounters out‑of‑distribution inputs, Box3D still provides a physically sensible baseline; the residual network is encouraged not to make large, unconstrained jumps.
-- **Invariant features**: Using invariants built from \(F_{\text{init}}\) and \(u^\mu\) focuses the model on physically meaningful degrees of freedom and reduces dependence on coordinate choices.
+- **Invariant features**: Using invariants built from $F_{\text{init}}$ and $u^\mu$ focuses the model on physically meaningful degrees of freedom and reduces dependence on coordinate choices.
 
 Overall, the pipeline is designed so that:
 
@@ -261,5 +259,4 @@ Overall, the pipeline is designed so that:
 - The model learns a small, constrained residual in a well‑scaled space.
 - The loss function enforces both accuracy and basic physicality of the final fluxes.
 
-This provides a robust starting point for exploring alternative architectures, loss terms, or additional inputs (e.g. matter fields) without changing the basic residual‑on‑Box3D philosophy. 
-
+This provides a robust starting point for exploring alternative architectures, loss terms, or additional inputs (e.g. matter fields) without changing the basic residual‑on‑Box3D philosophy.
