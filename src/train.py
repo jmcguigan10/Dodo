@@ -55,13 +55,12 @@ def _run_epoch(
     step = start_step
 
     amp_enabled = cfg.training.mixed_precision and device.type == "cuda"
-    autocast_kwargs = {"device_type": device.type, "dtype": torch.float16 if device.type == "cuda" else torch.bfloat16, "enabled": amp_enabled}
 
     for batch_idx, batch in enumerate(loader):
         inv, resid_true, f_box_flat, f_true_flat = _move_batch(batch, device)
 
         optimizer.zero_grad(set_to_none=True)
-        with autocast(**autocast_kwargs):
+        with autocast(enabled=amp_enabled):
             resid_pred_flat = model(inv)
             resid_pred = resid_pred_flat.view(-1, 6, 4)
             f_box = f_box_flat.view(-1, 6, 4)
