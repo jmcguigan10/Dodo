@@ -56,6 +56,7 @@ class TrainingConfig:
     mixed_precision: bool
     log_interval: int
     checkpoint_dir: str
+    results_dir: str
     resume_from: Optional[str]
 
 
@@ -121,6 +122,7 @@ class ExperimentConfig:
             "mixed_precision": True,
             "log_interval": 10,
             "checkpoint_dir": "checkpoints",
+            "results_dir": "results",
             "resume_from": None,
         }
         loss_defaults = {
@@ -158,3 +160,4 @@ class ExperimentConfig:
     def ensure_directories(self) -> None:
         Path(self.data.upload_dir).mkdir(parents=True, exist_ok=True)
         Path(self.training.checkpoint_dir).mkdir(parents=True, exist_ok=True)
+        Path(self.training.results_dir).mkdir(parents=True, exist_ok=True)

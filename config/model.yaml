@@ -35,6 +35,7 @@ training:
   mixed_precision: true
   log_interval: 25
   checkpoint_dir: "checkpoints"
+  results_dir: "results"
   resume_from: null
 
 loss:

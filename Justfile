@@ -16,3 +16,9 @@ default: preprocess
 #   just preprocess config=other.yaml   # uses another config
 preprocess config="config/pre_process.yaml":
     JULIA_DEPOT_PATH=${JULIA_DEPOT_PATH:-.julia_depot} {{python_bin}} scripts/run_preprocess.py --config {{config}} --julia {{julia_bin}}
+
+# Train residual-on-Box3D model:
+#   just train                          # uses config/model.yaml
+#   just train config=other.yaml        # overrides config
+train config="config/model.yaml":
+    {{python_bin}} train.py --config {{config}}

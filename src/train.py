@@ -1,5 +1,7 @@
 import argparse
+import json
 import math
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, Tuple
 
@@ -140,6 +142,8 @@ def train_and_eval(cfg: ExperimentConfig) -> Dict[str, float]:
     start_epoch = 0
     best_val = float("inf")
     global_step = 0
+    best_ckpt_path = Path(cfg.training.checkpoint_dir) / "best.pt"
+    final_ckpt_path = Path(cfg.training.checkpoint_dir) / "final.pt"
 
     # Resume if a checkpoint exists
     state = load_checkpoint(cfg.training.resume_from, map_location=device)
@@ -155,6 +159,7 @@ def train_and_eval(cfg: ExperimentConfig) -> Dict[str, float]:
         best_val = state.get("best_val", best_val)
         global_step = state.get("global_step", 0)
 
+    final_epoch = start_epoch - 1
     for epoch in range(start_epoch, cfg.training.epochs):
         print(f"\nEpoch {epoch + 1}/{cfg.training.epochs}")
         train_loss, global_step = _run_epoch(
@@ -172,7 +177,6 @@ def train_and_eval(cfg: ExperimentConfig) -> Dict[str, float]:
 
         if val_loss < best_val:
             best_val = val_loss
-            ckpt_path = Path(cfg.training.checkpoint_dir) / "best.pt"
             save_checkpoint(
                 {
                     "model": model.state_dict(),
@@ -183,12 +187,47 @@ def train_and_eval(cfg: ExperimentConfig) -> Dict[str, float]:
                     "global_step": global_step,
                     "best_val": best_val,
                 },
-                ckpt_path,
+                best_ckpt_path,
             )
-            print(f"Saved improved checkpoint to {ckpt_path}")
+            print(f"Saved improved checkpoint to {best_ckpt_path}")
+        final_epoch = epoch
 
     test_loss = _evaluate(model, loaders["test"], device, cfg)
+    # Save final checkpoint regardless of val performance
+    save_checkpoint(
+        {
+            "model": model.state_dict(),
+            "optimizer": optimizer.state_dict(),
+            "scheduler": scheduler.state_dict() if scheduler is not None else None,
+            "scaler": scaler.state_dict(),
+            "epoch": final_epoch,
+            "global_step": global_step,
+            "best_val": best_val,
+        },
+        final_ckpt_path,
+    )
+
+    timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    results_path = Path(cfg.training.results_dir) / f"metrics_{timestamp}.json"
+    metrics = {
+        "val_loss": best_val,
+        "test_loss": test_loss,
+        "best_checkpoint": str(best_ckpt_path),
+        "final_checkpoint": str(final_ckpt_path),
+        "timestamp": timestamp,
+        "config": {
+            "data": cfg.data.__dict__,
+            "model": cfg.model.__dict__,
+            "optimizer": cfg.optimizer.__dict__,
+            "scheduler": cfg.scheduler.__dict__,
+            "training": {k: v for k, v in cfg.training.__dict__.items()},
+            "loss": cfg.loss.__dict__,
+        },
+    }
+    results_path.write_text(json.dumps(metrics, indent=2))
     print(f"\nTest loss: {test_loss:.4f}")
+    print(f"Saved final checkpoint to {final_ckpt_path}")
+    print(f"Saved metrics to {results_path}")
     return {"val_loss": best_val, "test_loss": test_loss}
 
 
