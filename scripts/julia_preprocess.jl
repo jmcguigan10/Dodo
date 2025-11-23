@@ -59,6 +59,27 @@ function convert_F4_to_species(F4::Array{<:Real,4})
     idx_nnu  = findfirst(==(2), dims)   # nu / antinu
     idx_flav = findfirst(==(3), dims)   # flavor
 
+    # Some datasets combine flavor and nu/antinu into a single species
+    # dimension of size 6. Detect that case and reshape directly.
+    if idx_flav === nothing || idx_nnu === nothing
+        idx_species = findfirst(==(6), dims)
+        if idx_comp !== nothing && idx_species !== nothing
+            perm = (1, idx_comp + 1, idx_species + 1)
+            F4p = perm == (1, 2, 3) ? F4 : permutedims(F4, perm)
+
+            N, ncomp, nspecies = size(F4p)
+            @assert ncomp == 4 "post-permute: expected 4 spacetime components, got $ncomp"
+            @assert nspecies == 6 "post-permute: expected 6 species, got $nspecies"
+
+            F = Array{Float32}(undef, N, 6, 4)
+            @inbounds for k in 1:N, a in 1:6, μ in 1:4
+                F[k, a, μ] = Float32(F4p[k, μ, a])
+            end
+
+            return F
+        end
+    end
+
     @assert idx_comp !== nothing "could not find dim of size 4 (spacetime components) in F4"
     @assert idx_nnu  !== nothing "could not find dim of size 2 (nu/antinu) in F4"
     @assert idx_flav !== nothing "could not find dim of size 3 (flavor) in F4"
