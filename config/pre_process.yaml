@@ -1,26 +1,18 @@
 # config/pre_process.yaml
-#
-# Configuration for Dodo preprocessing: reading raw Emu/Box3D HDF5 files,
-# computing Lorentz-invariant 27D features and 24D residual targets,
-# and writing preprocessed datasets into ./pdata.
-#
-data_root: "./data" # where the raw *.h5 inputs live, relative to repo root
-output_root: "./pdata" # where to put the processed files
 
-# HDF5 dataset paths inside each input file. Adjust these if your files differ.
-# Each dataset is expected to have shapes:
-#   F_init: (N, 6, 4)   -- initial four-fluxes for the 6 species
-#   F_true: (N, 6, 4)   -- asymptotic four-fluxes from Emu
-#   F_box:  (N, 6, 4)   -- Box3D asymptotic four-fluxes
-#   u:      (N, 4)      -- fluid four-velocity in comoving tetrad
+data_root: "./data"
+output_root: "./pdata"
+
+# HDF5 dataset paths inside each Emu_data file.
+# Shapes from Zenodo:
+#   F4_initial: [sample, 4 spacetime comps, 2 nu/antinu, 3 flavors]
+#   F4_final:   same
+#   directorynames: [sample] (strings)
 h5_paths:
-  F_init: "F_init"
-  F_true: "F_true"
-  F_box: "F_box"
-  u: "u"
+  F_init: "F4_initial(1|ccm)"
+  F_true: "F4_final(1|ccm)"
+  dirnames: "directorynames"
 
-# List of input simulation files to process.
-# max_rows: optional cap on number of rows to read (null => use all).
 files:
   - name: "M1NuLib_3ms_rl1"
     path: "M1NuLib_3ms_rl1.h5"
@@ -46,7 +38,6 @@ files:
     max_rows: 5
     enabled: true
 
-# Global options
-output_filename: "preprocessed_all.h5" # combined dataset
+output_filename: "preprocessed_all.h5"
 shuffle: true
 seed: 1234

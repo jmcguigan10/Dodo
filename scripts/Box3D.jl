@@ -101,16 +101,16 @@ end
 Apply the Box3D mixing scheme to an initial set of number four-fluxes.
 
 Input:
-  * `F` : 4×4 matrix of initial fluxes `F[α,s]`, with
+  * F : 4×4 matrix of initial fluxes F(α,s), with
       α = 1: t component (number density),
           2: x, 3: y, 4: z components (spatial flux),
       s = 1: νₑ, 2: ν̄ₑ, 3: νₓ (μ/τ), 4: ν̄ₓ (μ̄/τ̄).
 
 Keyword args:
-  * `nθ`, `nφ` : angular resolution of the internal discretization.
+  * nθ, nφ : angular resolution of the internal discretization.
 
 Output:
-  * `F′` : 4×4 matrix of final fluxes in the same layout.
+  * F : 4×4 matrix of final fluxes in the same layout.
 """
 function box3d_flux(F::AbstractMatrix{<:Real}; nθ::Int=32, nφ::Int=64)
     size(F,1) == 4 || error("F must be 4×4: (t,x,y,z) × (νe, νebar, νx, νxbar)")
@@ -168,7 +168,7 @@ function box3d_flux(F::AbstractMatrix{<:Real}; nθ::Int=32, nφ::Int=64)
         end
     end
 
-    # if no ELN-XLN crossing, no fast conversion in this scheme
+    # if no ELN-XLN crossing, no fast conversion
     if Iplus == 0.0 || Iminus == 0.0
         return copy(F)
     end

@@ -1,3 +1,6 @@
+import torch
+
+
 def project_to_physical(F_pred, F_init, c=1.0, eps=1e-8):
     """
     Enforce basic physical constraints:
