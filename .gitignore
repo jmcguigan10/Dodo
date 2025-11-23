@@ -5,3 +5,4 @@
 /pdata/
 /.julia_depot/
 /.lib/
+/src/__pycache__/
