@@ -1,3 +1,6 @@
 /data/
 /Manifest.toml
 /Project.toml
+/Notes.md
+/.venv/
+/pdata/
