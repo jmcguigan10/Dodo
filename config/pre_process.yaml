@@ -2,6 +2,7 @@
 
 data_root: "./data"
 output_root: "./pdata"
+box3d_mu_fraction: 0.5  # fraction of νx/ν̄x assigned to μ (rest to τ) after Box3D
 
 # HDF5 dataset paths inside each Emu_data file.
 # Shapes from Zenodo:
@@ -17,25 +18,21 @@ files:
   - name: "M1NuLib_3ms_rl1"
     path: "M1NuLib_3ms_rl1.h5"
     sim_id: "M1_NuLib_3ms"
-    max_rows: 5
     enabled: true
 
   - name: "M1NuLib_7ms_rl1"
     path: "M1NuLib_7ms_rl1.h5"
     sim_id: "M1_NuLib_7ms"
-    max_rows: 5
     enabled: true
 
   - name: "M1NuLib_2016_5ms_rl0"
     path: "M1NuLib_2016_5ms_rl0.h5"
     sim_id: "M1_NuLib_2016_5ms"
-    max_rows: 5
     enabled: true
 
   - name: "random"
     path: "random.h5"
     sim_id: "random"
-    max_rows: 5
     enabled: true
 
 output_filename: "preprocessed_all.h5"

@@ -1,0 +1,19 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/johnny/Dodo/.julia_depot/compiled/v1.12/MPICH_jll/vDjle_csKSN.dylib'
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _julia_augment_mpiNOT._525, symObjAddr: 0x0, symBinAddr: 0x708, symSize: 0x970 }
+  - { offset: 0x2B, size: 0x8, addend: 0x0, symName: _julia_augment_mpiNOT._525, symObjAddr: 0x0, symBinAddr: 0x708, symSize: 0x970 }
+  - { offset: 0x108, size: 0x8, addend: 0x0, symName: _julia___init___588, symObjAddr: 0x12A8, symBinAddr: 0x19B0, symSize: 0x2A7C }
+  - { offset: 0x133, size: 0x8, addend: 0x0, symName: _julia___init___588, symObjAddr: 0x12A8, symBinAddr: 0x19B0, symSize: 0x2A7C }
+  - { offset: 0x62, size: 0x8, addend: 0x0, symName: _julia_find_artifact_dir_569, symObjAddr: 0x9B4, symBinAddr: 0x10BC, symSize: 0x1D4 }
+  - { offset: 0x79, size: 0x8, addend: 0x0, symName: _julia_find_artifact_dir_569, symObjAddr: 0x9B4, symBinAddr: 0x10BC, symSize: 0x1D4 }
+  - { offset: 0x1A2, size: 0x8, addend: 0x0, symName: _julia_parse_wrapper_platform_565, symObjAddr: 0x3D5C, symBinAddr: 0x4464, symSize: 0xC8 }
+  - { offset: 0x1AF, size: 0x8, addend: 0x0, symName: _julia_parse_wrapper_platform_565, symObjAddr: 0x3D5C, symBinAddr: 0x4464, symSize: 0xC8 }
+  - { offset: 0x1E6, size: 0x8, addend: 0x0, symName: _julia_augment_platformNOT._520, symObjAddr: 0x3E68, symBinAddr: 0x4570, symSize: 0xCC }
+  - { offset: 0x1F3, size: 0x8, addend: 0x0, symName: _julia_augment_platformNOT._520, symObjAddr: 0x3E68, symBinAddr: 0x4570, symSize: 0xCC }
+  - { offset: 0x22A, size: 0x8, addend: 0x0, symName: _julia_eager_mode_586, symObjAddr: 0x3F78, symBinAddr: 0x4680, symSize: 0x3C }
+  - { offset: 0x237, size: 0x8, addend: 0x0, symName: _julia_eager_mode_586, symObjAddr: 0x3F78, symBinAddr: 0x4680, symSize: 0x3C }
+  - { offset: 0xC4, size: 0x8, addend: 0x0, symName: _julia_make_wrapper_dict_479, symObjAddr: 0xBC0, symBinAddr: 0x12C8, symSize: 0x6A0 }
+  - { offset: 0xD1, size: 0x8, addend: 0x0, symName: _julia_make_wrapper_dict_479, symObjAddr: 0xBC0, symBinAddr: 0x12C8, symSize: 0x6A0 }
+...

@@ -1,0 +1,15 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/johnny/Dodo/.julia_depot/compiled/v1.12/XML2_jll/xWVg2_csKSN.dylib'
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _julia_find_artifact_dir_464, symObjAddr: 0x0, symBinAddr: 0x708, symSize: 0x1D4 }
+  - { offset: 0x35, size: 0x8, addend: 0x0, symName: _julia_find_artifact_dir_464, symObjAddr: 0x0, symBinAddr: 0x708, symSize: 0x1D4 }
+  - { offset: 0x78, size: 0x8, addend: 0x0, symName: _julia_parse_wrapper_platform_487, symObjAddr: 0x20C, symBinAddr: 0x914, symSize: 0xC8 }
+  - { offset: 0x85, size: 0x8, addend: 0x0, symName: _julia_parse_wrapper_platform_487, symObjAddr: 0x20C, symBinAddr: 0x914, symSize: 0xC8 }
+  - { offset: 0xBC, size: 0x8, addend: 0x0, symName: _julia_make_wrapper_dict_423, symObjAddr: 0x318, symBinAddr: 0xA20, symSize: 0x6A0 }
+  - { offset: 0xC9, size: 0x8, addend: 0x0, symName: _julia_make_wrapper_dict_423, symObjAddr: 0x318, symBinAddr: 0xA20, symSize: 0x6A0 }
+  - { offset: 0x100, size: 0x8, addend: 0x0, symName: _julia_eager_mode_483, symObjAddr: 0xA00, symBinAddr: 0x1108, symSize: 0x3C }
+  - { offset: 0x10D, size: 0x8, addend: 0x0, symName: _julia_eager_mode_483, symObjAddr: 0xA00, symBinAddr: 0x1108, symSize: 0x3C }
+  - { offset: 0x144, size: 0x8, addend: 0x0, symName: _julia___init___491, symObjAddr: 0xA74, symBinAddr: 0x117C, symSize: 0x1BBC }
+  - { offset: 0x16F, size: 0x8, addend: 0x0, symName: _julia___init___491, symObjAddr: 0xA74, symBinAddr: 0x117C, symSize: 0x1BBC }
+...

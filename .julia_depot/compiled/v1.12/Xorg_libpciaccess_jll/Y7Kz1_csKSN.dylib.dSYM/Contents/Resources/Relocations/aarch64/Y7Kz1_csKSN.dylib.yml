@@ -1,0 +1,9 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/johnny/Dodo/.julia_depot/compiled/v1.12/Xorg_libpciaccess_jll/Y7Kz1_csKSN.dylib'
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _julia_parse_wrapper_platform_322, symObjAddr: 0x0, symBinAddr: 0x718, symSize: 0xC4 }
+  - { offset: 0x2B, size: 0x8, addend: 0x0, symName: _julia_parse_wrapper_platform_322, symObjAddr: 0x0, symBinAddr: 0x718, symSize: 0xC4 }
+  - { offset: 0x62, size: 0x8, addend: 0x0, symName: _julia_make_wrapper_dict_281, symObjAddr: 0x108, symBinAddr: 0x820, symSize: 0x694 }
+  - { offset: 0x6F, size: 0x8, addend: 0x0, symName: _julia_make_wrapper_dict_281, symObjAddr: 0x108, symBinAddr: 0x820, symSize: 0x694 }
+...

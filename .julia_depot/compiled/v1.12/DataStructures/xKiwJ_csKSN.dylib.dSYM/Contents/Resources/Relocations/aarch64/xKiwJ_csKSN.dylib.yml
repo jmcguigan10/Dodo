@@ -1,0 +1,7 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/johnny/Dodo/.julia_depot/compiled/v1.12/DataStructures/xKiwJ_csKSN.dylib'
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _julia_unquote_504, symObjAddr: 0x0, symBinAddr: 0x670, symSize: 0x14 }
+  - { offset: 0x35, size: 0x8, addend: 0x0, symName: _julia_unquote_504, symObjAddr: 0x0, symBinAddr: 0x670, symSize: 0x14 }
+...

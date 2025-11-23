@@ -1,0 +1,94 @@
+[[OpenMPI]]
+arch = "aarch64"
+git-tree-sha1 = "2c69a8b56723744d2d049e01520ed7104fcfa0e9"
+lazy = true
+libgfortran_version = "5.0.0"
+mpi = "openmpi"
+os = "macos"
+
+    [[OpenMPI.download]]
+    sha256 = "c8e267c920df63e1032268bbd336bb2d6f1ff570617374046ca3524fb95ff6c7"
+    url = "https://github.com/JuliaBinaryWrappers/OpenMPI_jll.jl/releases/download/OpenMPI-v5.0.9+0/OpenMPI.v5.0.9.aarch64-apple-darwin-libgfortran5-mpi+openmpi.tar.gz"
+[[OpenMPI]]
+arch = "aarch64"
+git-tree-sha1 = "e6c3b14a855dd2a45cb2f120ed6a461542bf9bd3"
+lazy = true
+libc = "glibc"
+libgfortran_version = "5.0.0"
+mpi = "openmpi"
+os = "linux"
+
+    [[OpenMPI.download]]
+    sha256 = "123a1f2c8dbd46840b188c619f3003c45e3644fe4a12b848de0600cc707b897b"
+    url = "https://github.com/JuliaBinaryWrappers/OpenMPI_jll.jl/releases/download/OpenMPI-v5.0.9+0/OpenMPI.v5.0.9.aarch64-linux-gnu-libgfortran5-mpi+openmpi.tar.gz"
+[[OpenMPI]]
+arch = "aarch64"
+git-tree-sha1 = "2480d871561fe8dc9b5d57c59dcd0615ba414ce9"
+lazy = true
+libc = "musl"
+libgfortran_version = "5.0.0"
+mpi = "openmpi"
+os = "linux"
+
+    [[OpenMPI.download]]
+    sha256 = "cc56f0637425dcaa2dbd602152c3bbb69a4292ff8efbceb2d3b3182889b05377"
+    url = "https://github.com/JuliaBinaryWrappers/OpenMPI_jll.jl/releases/download/OpenMPI-v5.0.9+0/OpenMPI.v5.0.9.aarch64-linux-musl-libgfortran5-mpi+openmpi.tar.gz"
+[[OpenMPI]]
+arch = "powerpc64le"
+git-tree-sha1 = "d50e39ce31100df00f79b14d006ed91d07427edf"
+lazy = true
+libc = "glibc"
+libgfortran_version = "5.0.0"
+mpi = "openmpi"
+os = "linux"
+
+    [[OpenMPI.download]]
+    sha256 = "1f76d10388ff84e840cfeebed259752d2b1bea1d9690ec6302cb0bc01d37bb41"
+    url = "https://github.com/JuliaBinaryWrappers/OpenMPI_jll.jl/releases/download/OpenMPI-v5.0.9+0/OpenMPI.v5.0.9.powerpc64le-linux-gnu-libgfortran5-mpi+openmpi.tar.gz"
+[[OpenMPI]]
+arch = "riscv64"
+git-tree-sha1 = "c0739ec01552856720b1cfac9753429705d313ae"
+lazy = true
+libc = "glibc"
+libgfortran_version = "5.0.0"
+mpi = "openmpi"
+os = "linux"
+
+    [[OpenMPI.download]]
+    sha256 = "401c50df264b3bf617db7654a7d9eb00160a592aa4f862b6e5f6b0f22a7cdf10"
+    url = "https://github.com/JuliaBinaryWrappers/OpenMPI_jll.jl/releases/download/OpenMPI-v5.0.9+0/OpenMPI.v5.0.9.riscv64-linux-gnu-libgfortran5-mpi+openmpi.tar.gz"
+[[OpenMPI]]
+arch = "x86_64"
+git-tree-sha1 = "3a7e0cf10f811c2b5df8e9f2ed3b49791b1ca701"
+lazy = true
+libgfortran_version = "5.0.0"
+mpi = "openmpi"
+os = "macos"
+
+    [[OpenMPI.download]]
+    sha256 = "fac6a142407abdfb1131454cb382e28ca7c118287598b0b958bea3e14109ea51"
+    url = "https://github.com/JuliaBinaryWrappers/OpenMPI_jll.jl/releases/download/OpenMPI-v5.0.9+0/OpenMPI.v5.0.9.x86_64-apple-darwin-libgfortran5-mpi+openmpi.tar.gz"
+[[OpenMPI]]
+arch = "x86_64"
+git-tree-sha1 = "6aec9eb3179154724f5d75eb5faf1f5b18473568"
+lazy = true
+libc = "glibc"
+libgfortran_version = "5.0.0"
+mpi = "openmpi"
+os = "linux"
+
+    [[OpenMPI.download]]
+    sha256 = "acfb9ee2f62322a5669d9a83a67b91b6db67f0a4f249fb6468c6c0e7d1b45eb0"
+    url = "https://github.com/JuliaBinaryWrappers/OpenMPI_jll.jl/releases/download/OpenMPI-v5.0.9+0/OpenMPI.v5.0.9.x86_64-linux-gnu-libgfortran5-mpi+openmpi.tar.gz"
+[[OpenMPI]]
+arch = "x86_64"
+git-tree-sha1 = "32076633895228c7fd4dee70b9e25d10d0130a52"
+lazy = true
+libc = "musl"
+libgfortran_version = "5.0.0"
+mpi = "openmpi"
+os = "linux"
+
+    [[OpenMPI.download]]
+    sha256 = "46cb8ff52b56f37ef86d046db63a57eef11b1dd583b376b13bb6b9448675eeea"
+    url = "https://github.com/JuliaBinaryWrappers/OpenMPI_jll.jl/releases/download/OpenMPI-v5.0.9+0/OpenMPI.v5.0.9.x86_64-linux-musl-libgfortran5-mpi+openmpi.tar.gz"

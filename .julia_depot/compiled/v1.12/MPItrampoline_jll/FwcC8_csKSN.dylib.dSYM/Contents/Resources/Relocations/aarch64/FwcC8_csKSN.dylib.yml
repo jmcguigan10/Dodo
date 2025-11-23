@@ -1,0 +1,13 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/johnny/Dodo/.julia_depot/compiled/v1.12/MPItrampoline_jll/FwcC8_csKSN.dylib'
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _julia_augment_mpiNOT._392, symObjAddr: 0x0, symBinAddr: 0x710, symSize: 0x8C8 }
+  - { offset: 0x2B, size: 0x8, addend: 0x0, symName: _julia_augment_mpiNOT._392, symObjAddr: 0x0, symBinAddr: 0x710, symSize: 0x8C8 }
+  - { offset: 0x62, size: 0x8, addend: 0x0, symName: _julia_augment_platformNOT._383, symObjAddr: 0x90C, symBinAddr: 0x101C, symSize: 0xCC }
+  - { offset: 0x6F, size: 0x8, addend: 0x0, symName: _julia_augment_platformNOT._383, symObjAddr: 0x90C, symBinAddr: 0x101C, symSize: 0xCC }
+  - { offset: 0xA6, size: 0x8, addend: 0x0, symName: _julia_parse_wrapper_platform_388, symObjAddr: 0xA1C, symBinAddr: 0x112C, symSize: 0xC8 }
+  - { offset: 0xB3, size: 0x8, addend: 0x0, symName: _julia_parse_wrapper_platform_388, symObjAddr: 0xA1C, symBinAddr: 0x112C, symSize: 0xC8 }
+  - { offset: 0xEA, size: 0x8, addend: 0x0, symName: _julia_make_wrapper_dict_342, symObjAddr: 0xB28, symBinAddr: 0x1238, symSize: 0x6A0 }
+  - { offset: 0xF7, size: 0x8, addend: 0x0, symName: _julia_make_wrapper_dict_342, symObjAddr: 0xB28, symBinAddr: 0x1238, symSize: 0x6A0 }
+...

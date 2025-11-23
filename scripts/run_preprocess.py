@@ -8,6 +8,7 @@
 #   * calls Julia with the right arguments.
 #
 import argparse
+import os
 import subprocess
 from pathlib import Path
 
@@ -62,8 +63,12 @@ def main() -> None:
         str(config_path),
     ]
 
+    env = os.environ.copy()
+    env.setdefault("JULIA_DEPOT_PATH", str(repo_root / ".julia_depot"))
+
     print(f"[run_preprocess] running: {' '.join(cmd)}")
-    subprocess.run(cmd, check=True)
+    print(f"[run_preprocess] JULIA_DEPOT_PATH={env['JULIA_DEPOT_PATH']}")
+    subprocess.run(cmd, check=True, env=env)
     print("[run_preprocess] preprocessing finished successfully")
 
 

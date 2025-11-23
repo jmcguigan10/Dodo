@@ -1,0 +1,9 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/johnny/Dodo/.julia_depot/compiled/v1.12/p7zip_jll/dfuGM_csKSN.dylib'
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _julia___init___138, symObjAddr: 0x0, symBinAddr: 0x6D0, symSize: 0x14C }
+  - { offset: 0x67, size: 0x8, addend: 0x0, symName: _julia___init___138, symObjAddr: 0x0, symBinAddr: 0x6D0, symSize: 0x14C }
+  - { offset: 0x135, size: 0x8, addend: 0x0, symName: _julia_init_p7zip_path_150, symObjAddr: 0x190, symBinAddr: 0x860, symSize: 0x184 }
+  - { offset: 0x16A, size: 0x8, addend: 0x0, symName: _julia_init_p7zip_path_150, symObjAddr: 0x190, symBinAddr: 0x860, symSize: 0x184 }
+...

@@ -1,0 +1,25 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/johnny/Dodo/.julia_depot/compiled/v1.12/YAML/LPCgu_csKSN.dylib'
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _julia_rehashNOT._408, symObjAddr: 0x0, symBinAddr: 0x758, symSize: 0x638 }
+  - { offset: 0x111, size: 0x8, addend: 0x0, symName: _julia_rehashNOT._408, symObjAddr: 0x0, symBinAddr: 0x758, symSize: 0x638 }
+  - { offset: 0xE27, size: 0x8, addend: 0x0, symName: _japi1_setindexNOT._426, symObjAddr: 0x1114, symBinAddr: 0x186C, symSize: 0x1F4 }
+  - { offset: 0xEC0, size: 0x8, addend: 0x0, symName: _japi1_setindexNOT._426, symObjAddr: 0x1114, symBinAddr: 0x186C, symSize: 0x1F4 }
+  - { offset: 0x92E, size: 0x8, addend: 0x0, symName: _julia_ht_keyindex2_shorthashNOT._422, symObjAddr: 0xD7C, symBinAddr: 0x14D4, symSize: 0x2E4 }
+  - { offset: 0xA03, size: 0x8, addend: 0x0, symName: _julia_ht_keyindex2_shorthashNOT._422, symObjAddr: 0xD7C, symBinAddr: 0x14D4, symSize: 0x2E4 }
+  - { offset: 0x862, size: 0x8, addend: 0x0, symName: _julia_setpropertyNOT._403, symObjAddr: 0x9BC, symBinAddr: 0x1114, symSize: 0x110 }
+  - { offset: 0x86F, size: 0x8, addend: 0x0, symName: _julia_setpropertyNOT._403, symObjAddr: 0x9BC, symBinAddr: 0x1114, symSize: 0x110 }
+  - { offset: 0x11FC, size: 0x8, addend: 0x0, symName: _julia_ht_keyindex2_shorthashNOT._429, symObjAddr: 0x1308, symBinAddr: 0x1A60, symSize: 0x220 }
+  - { offset: 0x128B, size: 0x8, addend: 0x0, symName: _julia_ht_keyindex2_shorthashNOT._429, symObjAddr: 0x1308, symBinAddr: 0x1A60, symSize: 0x220 }
+  - { offset: 0x57E, size: 0x8, addend: 0x0, symName: _japi1_setpropertyNOT._405, symObjAddr: 0x688, symBinAddr: 0xDE0, symSize: 0x100 }
+  - { offset: 0x58B, size: 0x8, addend: 0x0, symName: _japi1_setpropertyNOT._405, symObjAddr: 0x688, symBinAddr: 0xDE0, symSize: 0x100 }
+  - { offset: 0x8A6, size: 0x8, addend: 0x0, symName: _julia_setpropertyNOT._399, symObjAddr: 0xB1C, symBinAddr: 0x1274, symSize: 0x110 }
+  - { offset: 0x8B3, size: 0x8, addend: 0x0, symName: _julia_setpropertyNOT._399, symObjAddr: 0xB1C, symBinAddr: 0x1274, symSize: 0x110 }
+  - { offset: 0x1526, size: 0x8, addend: 0x0, symName: _japi1_setpropertyNOT._407, symObjAddr: 0x15D8, symBinAddr: 0x1D30, symSize: 0x100 }
+  - { offset: 0x1533, size: 0x8, addend: 0x0, symName: _japi1_setpropertyNOT._407, symObjAddr: 0x15D8, symBinAddr: 0x1D30, symSize: 0x100 }
+  - { offset: 0x5C2, size: 0x8, addend: 0x0, symName: _japi1_Dict_432, symObjAddr: 0x788, symBinAddr: 0xEE0, symSize: 0x234 }
+  - { offset: 0x683, size: 0x8, addend: 0x0, symName: _japi1_Dict_432, symObjAddr: 0x788, symBinAddr: 0xEE0, symSize: 0x234 }
+  - { offset: 0x8EA, size: 0x8, addend: 0x0, symName: _japi1_setpropertyNOT._406, symObjAddr: 0xC7C, symBinAddr: 0x13D4, symSize: 0x100 }
+  - { offset: 0x8F7, size: 0x8, addend: 0x0, symName: _japi1_setpropertyNOT._406, symObjAddr: 0xC7C, symBinAddr: 0x13D4, symSize: 0x100 }
+...

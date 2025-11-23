@@ -1,0 +1,13 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/johnny/Dodo/.julia_depot/compiled/v1.12/InteractiveUtils/0TrXF_csKSN.dylib'
+relocations:
+  - { offset: 0x1E, size: 0x8, addend: 0x0, symName: _julia_YY._growbegNOT.YY.YY.0_592, symObjAddr: 0x0, symBinAddr: 0x710, symSize: 0x61C }
+  - { offset: 0xFD, size: 0x8, addend: 0x0, symName: _julia_YY._growbegNOT.YY.YY.0_592, symObjAddr: 0x0, symBinAddr: 0x710, symSize: 0x61C }
+  - { offset: 0x406, size: 0x8, addend: 0x0, symName: _julia_define_default_editors_612, symObjAddr: 0x738, symBinAddr: 0xE48, symSize: 0x19D0 }
+  - { offset: 0x4D1, size: 0x8, addend: 0x0, symName: _julia_define_default_editors_612, symObjAddr: 0x738, symBinAddr: 0xE48, symSize: 0x19D0 }
+  - { offset: 0x1088, size: 0x8, addend: 0x0, symName: _julia_define_editor_602, symObjAddr: 0x2330, symBinAddr: 0x2A40, symSize: 0x1A4 }
+  - { offset: 0x1103, size: 0x8, addend: 0x0, symName: _julia_define_editor_602, symObjAddr: 0x2330, symBinAddr: 0x2A40, symSize: 0x1A4 }
+  - { offset: 0xF02, size: 0x8, addend: 0x0, symName: _julia_define_editor_608, symObjAddr: 0x2140, symBinAddr: 0x2850, symSize: 0x1A4 }
+  - { offset: 0xF7D, size: 0x8, addend: 0x0, symName: _julia_define_editor_608, symObjAddr: 0x2140, symBinAddr: 0x2850, symSize: 0x1A4 }
+...
