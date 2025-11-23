@@ -68,6 +68,7 @@ class LossConfig:
     w_direction: float
     w_unphysical: float
     w_residual_l1: float
+    density_floor: float
     speed_of_light: float
     eps: float
 
@@ -133,6 +134,7 @@ class ExperimentConfig:
             "w_direction": 1.0,
             "w_unphysical": 25.0,
             "w_residual_l1": 0.2,
+            "density_floor": 0.1,
             "speed_of_light": 1.0,
             "eps": 1e-8,
         }

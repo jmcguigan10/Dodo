@@ -4,10 +4,10 @@ This repo trains a machine-learning closure for fast neutrino flavor instability
 
 High‑level mapping at each spacetime point:
 
-- Inputs: initial four‑fluxes \(F_{\text{init}} \in \mathbb{R}^{6\times 4}\) plus fluid four‑velocity \(u^\mu\).
-- Baseline: Box3D closure gives \(F_{\text{Box3D}}\).
-- Target: Emu asymptotic fluxes \(F_{\text{true}}\).
-- Network prediction: residual \(\Delta F_{\text{ML}}\) such that
+- Inputs: initial four‑fluxes $F_{\text{init}} \in \mathbb{R}^{6\times 4}$ plus fluid four‑velocity $u^\mu$.
+- Baseline: Box3D closure gives $F_{\text{Box3D}}$.
+- Target: Emu asymptotic fluxes $F_{\text{true}}$.
+- Network prediction: residual $\Delta F_{\text{ML}}$ such that
   $ F_{\text{pred}} = F_{\text{Box3D}} + \Delta F_{\text{ML}}(F_{\text{inv}}),$
   where $F_{\text{inv}}$ are invariant features built from $F_{\text{init}}$ and $u^\mu$.
 
@@ -63,13 +63,13 @@ The training loader builds a residual dataset from `pdata/preprocessed_all.h5`:
   - Lazily opens the HDF5 file per worker.
   - Automatically infers sample/species/component axes for `F_box`, `F_true`, and `invariants`.
   - For each index $k$:
-    - Reads invariants \(x_k \in \mathbb{R}^{27}\).
+    - Reads invariants $x_k \in \mathbb{R}^{27}$.
     - Reorders `F_box[k]`, `F_true[k]` to `(6, 4)`.
     - Computes residual \(\Delta F_k = F_{\text{true},k} - F_{\text{Box3D},k}\) and flattens to 24 components.
 
 - **Normalization and scaling**:
   - Compute `mean_inv`, `std_inv` over the **training split only** and normalize invariants as
-    \((x - \mu)/\sigma\).
+    $(x - \mu)/\sigma$.
   - Compute a robust `target_scale`:
     - Default: 99th percentile of $|F_{\text{true}}|$ (across all components); for this dataset, $\sim 1.46\times10^{33}$.
     - Optional override: `data.target_scale` in `config/model.yaml`.

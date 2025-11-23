@@ -16,6 +16,7 @@ def closure_loss(
     """
     eps = cfg.eps
     c = cfg.speed_of_light
+    density_floor = cfg.density_floor
 
     n_true = F_true[..., 0]
     n_pred = F_pred[..., 0]
@@ -26,7 +27,9 @@ def closure_loss(
     mag_true = torch.linalg.norm(vec_true, dim=-1) + eps
     mag_pred = torch.linalg.norm(vec_pred, dim=-1)
 
-    L_n = ((n_pred - n_true) ** 2 / (n_true**2 + eps)).mean()
+    # Relative density error with a floor to avoid exploding gradients when n_true ≈ 0
+    denom_n = torch.clamp(n_true.abs(), min=density_floor) ** 2 + eps
+    L_n = ((n_pred - n_true) ** 2 / denom_n).mean()
 
     L_mag = ((mag_pred - mag_true) ** 2 / (mag_true**2 + eps)).mean()
 
@@ -35,7 +38,7 @@ def closure_loss(
     cos = (u_true * u_pred).sum(dim=-1).clamp(-1.0, 1.0)
     L_dir = (1.0 - cos).mean()
 
-    fluxfac_pred = mag_pred / (c * n_pred + eps)
+    fluxfac_pred = mag_pred / (c * n_pred.abs() + eps)
     L_unphys = torch.relu(fluxfac_pred - 1.0).mean()
 
     L_resid = F.l1_loss(resid_pred, resid_true)
