@@ -145,6 +145,9 @@ def train_and_eval(cfg: ExperimentConfig) -> Dict[str, float]:
     global_step = 0
     best_ckpt_path = Path(cfg.training.checkpoint_dir) / "best.pt"
     final_ckpt_path = Path(cfg.training.checkpoint_dir) / "final.pt"
+    train_log_path = Path(cfg.training.results_dir) / "train.log"
+    train_log_path.parent.mkdir(parents=True, exist_ok=True)
+    log_lines = []
 
     # Resume if a checkpoint exists
     state = load_checkpoint(cfg.training.resume_from, map_location=device)
@@ -175,6 +178,7 @@ def train_and_eval(cfg: ExperimentConfig) -> Dict[str, float]:
         )
         val_loss = _evaluate(model, loaders["val"], device, cfg)
         print(f"train_loss={train_loss:.4f}  val_loss={val_loss:.4f}")
+        log_lines.append(f"epoch={epoch+1} train_loss={train_loss:.6f} val_loss={val_loss:.6f}")
 
         if val_loss < best_val:
             best_val = val_loss
@@ -227,6 +231,8 @@ def train_and_eval(cfg: ExperimentConfig) -> Dict[str, float]:
         },
     }
     results_path.write_text(json.dumps(metrics, indent=2))
+    # Persist the train/val log for plotting
+    train_log_path.write_text("\n".join(log_lines) + "\n")
     print(f"\nTest loss: {test_loss:.4f}")
     print(f"Saved final checkpoint to {final_ckpt_path}")
     print(f"Saved metrics to {results_path}")

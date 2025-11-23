@@ -8,7 +8,7 @@ High‑level mapping at each spacetime point:
 - Baseline: Box3D closure gives $F_{\text{Box3D}}$.
 - Target: Emu asymptotic fluxes $F_{\text{true}}$.
 - Network prediction: residual $\Delta F_{\text{ML}}$ such that
-  $ F_{\text{pred}} = F_{\text{Box3D}} + \Delta F_{\text{ML}}(F_{\text{inv}}),$
+  $F_{\text{pred}} = F_{\text{Box3D}} + \Delta F_{\text{ML}}(F_{\text{inv}}),$
   where $F_{\text{inv}}$ are invariant features built from $F_{\text{init}}$ and $u^\mu$.
 
 See `plan.md` for the physics/math rationale and `Notes.md` for the Box3D details.
@@ -26,6 +26,7 @@ Raw HDF5 data live in `data/`, with configuration in `config/pre_process.yaml`. 
   - Calls the Julia Box3D closure on each sample to get $F_{\text{Box3D}}$.
   - Computes invariants (see `plan.md` and `mk_invariant.jl`).
   - Writes a consolidated HDF5 file to `pdata/preprocessed_all.h5`.
+  - Also computes target scaling statistics (99th percentile) used downstream.
 
 The preprocessed file has (axes inferred automatically in the loader):
 
@@ -49,6 +50,18 @@ just preprocess config=...     # override config
 
 ```sh
 python3 scripts/run_preprocess.py --config config/pre_process.yaml --julia julia
+```
+- Inspection:
+```sh
+python3 -m scripts.inspect_checkpoint --config config/model.yaml --split val --samples 512
+```
+- Metrics plot: 
+```sh
+python3 -m scripts.plot_metrics --results-dir results --outdir results/plots
+```
+- Train/val plot (after next run): 
+```sh
+python3 -m scripts.plot_training_curve --log results/train.log --outdir results/plots
 ```
 
 This populates `pdata/preprocessed_all.h5`, which the training pipeline consumes.
@@ -121,10 +134,10 @@ This design is lightweight, stable, and expressive enough to learn small correct
   - `resid_true`: target residual (24‑vector).
 
 - Terms:
-  - **Density loss** (`L_n`): relative squared error on the time component.
+  - **Density loss** (`L_n`): relative squared error on the time component with a floor on $|n_{\text{true}}|$ to prevent blowups when density is tiny (see `loss.density_floor`).
   - **Flux magnitude loss** (`L_mag`): relative squared error on $|\vec{F}|$.
   - **Direction loss** (`L_dir`): penalizes misalignment between flux direction unit vectors.
-  - **Unphysical penalty** (`L_unphys`): penalizes flux factors $|\vec{F}|/(c n)$ that exceed 1.
+  - **Unphysical penalty** (`L_unphys`): penalizes flux factors $|\vec{F}|/(c |n|)$ that exceed 1.
   - **Residual L1 loss** (`L_resid`): $L^1$ between `resid_pred` and `resid_true`.
 
 - Combined with weights from the `loss` block in `config/model.yaml`:
@@ -136,6 +149,7 @@ loss:
   w_direction: 1.0
   w_unphysical: 25.0
   w_residual_l1: 0.2
+  density_floor: 0.1
   speed_of_light: 1.0
   eps: 1.0e-8
 ```
