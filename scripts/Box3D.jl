@@ -8,6 +8,8 @@
 #   s=3 : ν_x  (combined μ/τ)
 #   s=4 : ν̄_x (combined μ̄/τ̄)
 
+using Lebedev
+
 const FOUR_PI = 4π
 
 # map flux factor f = |F|/N to Minerbo parameter Z via Eq. (7)
@@ -74,25 +76,28 @@ function closure_params(N::Real, F::AbstractVector{<:Real})
     return (Z, Fhat, base)
 end
 
-# simple tensor-product angular grid, uniform in μ = cosθ and φ
+# angular grid using Lebedev quadrature on the unit sphere.
+# We map (nθ, nφ) to a target number of points nθ*nφ and choose
+# the closest available Lebedev rule with that many points.
 function angular_grid(nθ::Int, nφ::Int)
-    Δμ = 2.0 / nθ
-    Δφ = 2π / nφ
-    ndir = nθ * nφ
-    dirs = Vector{NTuple{3,Float64}}(undef, ndir)
-    w = fill(Δμ * Δφ, ndir)  # weights so that ∑w = 4π
+    target = nθ * nφ
+    points_available = Lebedev.getavailablepoints()
+    idx_min = argmin(abs.(points_available .- target))
+    npts = points_available[idx_min]
 
-    idx = 1
-    for i in 1:nθ
-        μ = -1.0 + (i - 0.5)*Δμ
-        sinθ = sqrt(max(0.0, 1.0 - μ*μ))
-        for j in 1:nφ
-            φ = (j - 0.5) * Δφ
-            dirs[idx] = (sinθ*cos(φ), sinθ*sin(φ), μ)
-            idx += 1
-        end
+    x, y, z, w = Lebedev.lebedev_by_points(npts)
+    ndir = length(x)
+
+    dirs = Vector{NTuple{3,Float64}}(undef, ndir)
+    for i in 1:ndir
+        dirs[i] = (x[i], y[i], z[i])
     end
-    return dirs, w
+
+    # Lebedev.jl normalizes weights so that sum(w) = 1.
+    # The rest of this code expects weights summing to 4π.
+    w_scaled = FOUR_PI .* w
+
+    return dirs, w_scaled
 end
 
 """
