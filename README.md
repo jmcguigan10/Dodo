@@ -274,3 +274,12 @@ Overall, the pipeline is designed so that:
 - The loss function enforces both accuracy and basic physicality of the final fluxes.
 
 This provides a robust starting point for exploring alternative architectures, loss terms, or additional inputs (e.g. matter fields) without changing the basic residual‑on‑Box3D philosophy.
+
+---
+
+## 9. Utilities and Study Runner
+
+- `scripts/inspect_checkpoint.py`: print loss term breakdowns and flux-factor stats on a slice of train/val/test.
+- `scripts/plot_metrics.py`: plot val/test loss across runs (`results/metrics_*.json`) to `results/plots/`.
+- `scripts/plot_training_curve.py`: plot train/val curves from `results/train.log` (written by the training loop).
+- `scripts/run_study.py`: grid-study runner that spawns multiple training runs with overrides (LR, hidden_dim, w_density, w_residual_l1) and isolates outputs under `results/studies/<tag>/run_XXX/`.

@@ -27,7 +27,9 @@ def _flux_axes(shape) -> Tuple[int, int, int]:
     species_axis = shape.index(6) if 6 in shape else None
     comp_axis = shape.index(4) if 4 in shape else None
     if species_axis is None or comp_axis is None:
-        raise ValueError(f"Flux dataset must contain dimensions 6 and 4, got shape {shape}")
+        raise ValueError(
+            f"Flux dataset must contain dimensions 6 and 4, got shape {shape}"
+        )
     sample_axes = [ax for ax in axes if ax not in (species_axis, comp_axis)]
     if len(sample_axes) != 1:
         raise ValueError(f"Could not infer sample axis for shape {shape}")
@@ -42,7 +44,9 @@ def _slice_features(ds, idx: int, sample_axis: int) -> np.ndarray:
     return np.asarray(arr, dtype=np.float32)
 
 
-def _slice_flux(ds, idx: int, sample_axis: int, species_axis: int, comp_axis: int) -> np.ndarray:
+def _slice_flux(
+    ds, idx: int, sample_axis: int, species_axis: int, comp_axis: int
+) -> np.ndarray:
     slc = [slice(None)] * ds.ndim
     slc[sample_axis] = idx
     arr = np.asarray(ds[tuple(slc)], dtype=np.float32)
@@ -56,10 +60,12 @@ def _slice_flux(ds, idx: int, sample_axis: int, species_axis: int, comp_axis: in
 
 class EmuResidualDataset(Dataset):
     """
-    Lazy dataset that serves normalized invariants and Box3D residual targets.
+    Dataset that serves normalized invariants and Box3D residual targets.
     """
 
-    def __init__(self, h5_path: Path, indices: Iterable[int], norm_stats: Dict[str, np.ndarray]):
+    def __init__(
+        self, h5_path: Path, indices: Iterable[int], norm_stats: Dict[str, np.ndarray]
+    ):
         self.h5_path = Path(h5_path)
         self.indices = np.asarray(list(indices), dtype=np.int64)
         self.mean_inv = np.asarray(norm_stats["mean_inv"], dtype=np.float32)
@@ -67,9 +73,13 @@ class EmuResidualDataset(Dataset):
         self._file = None
         self.target_scale = float(norm_stats["target_scale"])
         with h5py.File(self.h5_path, "r") as f:
-            self.inv_sample_axis = _feature_sample_axis(f["invariants"].shape, feature_dim=27)
+            self.inv_sample_axis = _feature_sample_axis(
+                f["invariants"].shape, feature_dim=27
+            )
             flux_shape = f["F_box"].shape
-            self.sample_axis_flux, self.species_axis, self.comp_axis = _flux_axes(flux_shape)
+            self.sample_axis_flux, self.species_axis, self.comp_axis = _flux_axes(
+                flux_shape
+            )
 
     def __len__(self) -> int:
         return len(self.indices)
@@ -84,8 +94,12 @@ class EmuResidualDataset(Dataset):
         k = int(self.indices[idx])
 
         inv = _slice_features(f["invariants"], k, self.inv_sample_axis)  # (27,)
-        f_box = _slice_flux(f["F_box"], k, self.sample_axis_flux, self.species_axis, self.comp_axis)  # (6,4)
-        f_true = _slice_flux(f["F_true"], k, self.sample_axis_flux, self.species_axis, self.comp_axis)  # (6,4)
+        f_box = _slice_flux(
+            f["F_box"], k, self.sample_axis_flux, self.species_axis, self.comp_axis
+        )  # (6,4)
+        f_true = _slice_flux(
+            f["F_true"], k, self.sample_axis_flux, self.species_axis, self.comp_axis
+        )  # (6,4)
         resid = (f_true - f_box).reshape(-1)  # consistent residual target
 
         # Scale to keep magnitudes in a trainable range
@@ -124,7 +138,9 @@ def _count_samples(h5_path: Path) -> int:
         return inv_shape[sample_axis]
 
 
-def _split_indices(n: int, val_split: float, test_split: float, seed: int) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+def _split_indices(
+    n: int, val_split: float, test_split: float, seed: int
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     set_seed(seed)
     all_idx = np.arange(n, dtype=np.int64)
     rng = np.random.default_rng(seed)
@@ -140,7 +156,9 @@ def _split_indices(n: int, val_split: float, test_split: float, seed: int) -> Tu
     return train_idx, val_idx, test_idx
 
 
-def _compute_norm_stats(h5_path: Path, indices: np.ndarray, chunk: int = 2048) -> Dict[str, np.ndarray]:
+def _compute_norm_stats(
+    h5_path: Path, indices: np.ndarray, chunk: int = 2048
+) -> Dict[str, np.ndarray]:
     sum_x = None
     sum_x2 = None
     total = 0
@@ -182,10 +200,14 @@ def _compute_target_scale(h5_path: Path, provided: float | None) -> float:
     return scale
 
 
-def build_dataloaders(cfg: DataConfig) -> Tuple[Dict[str, DataLoader], Dict[str, np.ndarray], Dict[str, np.ndarray]]:
+def build_dataloaders(
+    cfg: DataConfig,
+) -> Tuple[Dict[str, DataLoader], Dict[str, np.ndarray], Dict[str, np.ndarray]]:
     h5_path = Path(cfg.processed_path)
     n_samples = _count_samples(h5_path)
-    train_idx, val_idx, test_idx = _split_indices(n_samples, cfg.val_split, cfg.test_split, cfg.seed)
+    train_idx, val_idx, test_idx = _split_indices(
+        n_samples, cfg.val_split, cfg.test_split, cfg.seed
+    )
     target_scale = _compute_target_scale(h5_path, cfg.target_scale)
     norm_stats = _compute_norm_stats(h5_path, train_idx)
     norm_stats["target_scale"] = target_scale
