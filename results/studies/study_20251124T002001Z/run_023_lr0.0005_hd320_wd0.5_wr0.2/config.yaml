@@ -1,0 +1,47 @@
+data:
+  processed_path: pdata/preprocessed_all.h5
+  upload_dir: data/uploads
+  batch_size: 256
+  num_workers: 4
+  val_split: 0.1
+  test_split: 0.1
+  seed: 1337
+  pin_memory: true
+  drop_last: false
+  target_scale: null
+model:
+  input_dim: 27
+  hidden_dim: 320
+  hidden_layers: 4
+  activation: gelu
+  dropout: 0.05
+  use_batch_norm: true
+  output_dim: 24
+optimizer:
+  lr: 0.0005
+  weight_decay: 1.0e-05
+  betas:
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+scheduler:
+  warmup_steps: 500
+  min_lr: 1.0e-06
+  max_lr: null
+training:
+  epochs: 50
+  grad_clip: 1.0
+  mixed_precision: true
+  log_interval: 25
+  checkpoint_dir: results/studies/study_20251124T002001Z/run_023_lr0.0005_hd320_wd0.5_wr0.2/checkpoints
+  results_dir: results/studies/study_20251124T002001Z/run_023_lr0.0005_hd320_wd0.5_wr0.2/results
+  resume_from: null
+loss:
+  w_density: 0.5
+  w_magnitude: 1.0
+  w_direction: 1.0
+  w_unphysical: 25.0
+  w_residual_l1: 0.2
+  density_floor: 0.1
+  speed_of_light: 1.0
+  eps: 1.0e-08

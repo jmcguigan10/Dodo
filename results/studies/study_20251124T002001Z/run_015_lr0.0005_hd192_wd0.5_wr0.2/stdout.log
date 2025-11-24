@@ -1,0 +1,327 @@
+Using device: cuda
+Dataset sizes → train: 21361, val: 2670, test: 2670
+Target scale (applied to F_box/F_true/residual): 1.461e+33
+
+Epoch 1/50
+/usr/local/lib/python3.10/dist-packages/torch/optim/lr_scheduler.py:139: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+step 25: loss=5092.3860, lr=2.695e-05
+step 50: loss=6004.8754, lr=5.190e-05
+step 75: loss=6425.0667, lr=7.685e-05
+train_loss=6827.2552  val_loss=2390.7050
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 2/50
+step 109: loss=2529.0871, lr=1.108e-04
+step 134: loss=1985.7988, lr=1.357e-04
+step 159: loss=1839.7238, lr=1.607e-04
+train_loss=1738.7161  val_loss=1079.5379
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 3/50
+step 193: loss=829.8729, lr=1.946e-04
+step 218: loss=1072.9470, lr=2.196e-04
+step 243: loss=1024.5973, lr=2.445e-04
+train_loss=975.1898  val_loss=407.8387
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 4/50
+step 277: loss=714.3870, lr=2.784e-04
+step 302: loss=689.0543, lr=3.034e-04
+step 327: loss=702.1064, lr=3.283e-04
+train_loss=669.9583  val_loss=275.2856
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 5/50
+step 361: loss=489.9197, lr=3.623e-04
+step 386: loss=595.6073, lr=3.872e-04
+step 411: loss=581.3136, lr=4.122e-04
+train_loss=556.4493  val_loss=194.6153
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 6/50
+step 445: loss=442.5890, lr=4.461e-04
+step 470: loss=675.0913, lr=4.711e-04
+step 495: loss=550.3771, lr=4.960e-04
+train_loss=517.9138  val_loss=143.5711
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 7/50
+step 529: loss=281.1790, lr=4.999e-04
+step 554: loss=418.4850, lr=4.997e-04
+step 579: loss=386.1413, lr=4.994e-04
+train_loss=370.8608  val_loss=149.4188
+
+Epoch 8/50
+step 613: loss=307.9325, lr=4.989e-04
+step 638: loss=255.2913, lr=4.983e-04
+step 663: loss=282.4535, lr=4.976e-04
+train_loss=272.5674  val_loss=162.7418
+
+Epoch 9/50
+step 697: loss=164.3878, lr=4.965e-04
+step 722: loss=184.7883, lr=4.956e-04
+step 747: loss=186.3853, lr=4.945e-04
+train_loss=185.9434  val_loss=152.6555
+
+Epoch 10/50
+step 781: loss=256.7849, lr=4.929e-04
+step 806: loss=216.6983, lr=4.916e-04
+step 831: loss=230.0976, lr=4.902e-04
+train_loss=229.6661  val_loss=123.0917
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 11/50
+step 865: loss=131.6244, lr=4.881e-04
+step 890: loss=147.8223, lr=4.864e-04
+step 915: loss=156.2053, lr=4.847e-04
+train_loss=153.5532  val_loss=106.1294
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 12/50
+step 949: loss=172.2691, lr=4.821e-04
+step 974: loss=139.9723, lr=4.801e-04
+step 999: loss=125.6495, lr=4.779e-04
+train_loss=121.5962  val_loss=73.5234
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 13/50
+step 1033: loss=111.5468, lr=4.749e-04
+step 1058: loss=125.2426, lr=4.725e-04
+step 1083: loss=149.6905, lr=4.701e-04
+train_loss=150.9954  val_loss=304.9116
+
+Epoch 14/50
+step 1117: loss=133.9118, lr=4.665e-04
+step 1142: loss=144.0129, lr=4.638e-04
+step 1167: loss=162.8366, lr=4.610e-04
+train_loss=159.6560  val_loss=87.6816
+
+Epoch 15/50
+step 1201: loss=134.5169, lr=4.571e-04
+step 1226: loss=135.7070, lr=4.541e-04
+step 1251: loss=128.9363, lr=4.510e-04
+train_loss=127.2400  val_loss=87.5226
+
+Epoch 16/50
+step 1285: loss=160.5765, lr=4.466e-04
+step 1310: loss=134.3075, lr=4.433e-04
+step 1335: loss=126.0155, lr=4.399e-04
+train_loss=126.5344  val_loss=165.9455
+
+Epoch 17/50
+step 1369: loss=129.8495, lr=4.351e-04
+step 1394: loss=126.9092, lr=4.315e-04
+step 1419: loss=125.2837, lr=4.278e-04
+train_loss=124.8543  val_loss=58.0677
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 18/50
+step 1453: loss=111.9127, lr=4.227e-04
+step 1478: loss=139.7541, lr=4.188e-04
+step 1503: loss=163.2763, lr=4.149e-04
+train_loss=161.3285  val_loss=76.4725
+
+Epoch 19/50
+step 1537: loss=148.3337, lr=4.094e-04
+step 1562: loss=130.7510, lr=4.053e-04
+step 1587: loss=143.7104, lr=4.011e-04
+train_loss=139.9792  val_loss=72.8685
+
+Epoch 20/50
+step 1621: loss=135.8781, lr=3.953e-04
+step 1646: loss=129.0726, lr=3.909e-04
+step 1671: loss=126.6629, lr=3.865e-04
+train_loss=123.5985  val_loss=69.4922
+
+Epoch 21/50
+step 1705: loss=118.6464, lr=3.804e-04
+step 1730: loss=120.6408, lr=3.759e-04
+step 1755: loss=169.9206, lr=3.713e-04
+train_loss=166.0953  val_loss=63.0707
+
+Epoch 22/50
+step 1789: loss=83.7156, lr=3.649e-04
+step 1814: loss=100.3778, lr=3.602e-04
+step 1839: loss=110.6486, lr=3.554e-04
+train_loss=107.3641  val_loss=91.9160
+
+Epoch 23/50
+step 1873: loss=82.6628, lr=3.488e-04
+step 1898: loss=90.5391, lr=3.439e-04
+step 1923: loss=108.0567, lr=3.390e-04
+train_loss=104.8798  val_loss=55.9259
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 24/50
+step 1957: loss=101.5016, lr=3.322e-04
+step 1982: loss=93.5286, lr=3.272e-04
+step 2007: loss=94.5485, lr=3.221e-04
+train_loss=94.8079  val_loss=62.1484
+
+Epoch 25/50
+step 2041: loss=83.1034, lr=3.152e-04
+step 2066: loss=87.5648, lr=3.101e-04
+step 2091: loss=88.3778, lr=3.049e-04
+train_loss=91.5677  val_loss=52.9787
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 26/50
+step 2125: loss=102.6019, lr=2.979e-04
+step 2150: loss=100.0903, lr=2.927e-04
+step 2175: loss=97.9367, lr=2.874e-04
+train_loss=97.2860  val_loss=56.9280
+
+Epoch 27/50
+step 2209: loss=88.8463, lr=2.803e-04
+step 2234: loss=89.2825, lr=2.750e-04
+step 2259: loss=90.5033, lr=2.698e-04
+train_loss=89.0826  val_loss=58.0296
+
+Epoch 28/50
+step 2293: loss=69.0582, lr=2.626e-04
+step 2318: loss=73.9458, lr=2.573e-04
+step 2343: loss=69.9232, lr=2.520e-04
+train_loss=69.0296  val_loss=50.9436
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 29/50
+step 2377: loss=61.0863, lr=2.448e-04
+step 2402: loss=64.3930, lr=2.395e-04
+step 2427: loss=79.2844, lr=2.342e-04
+train_loss=77.3206  val_loss=46.2863
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 30/50
+step 2461: loss=81.6289, lr=2.270e-04
+step 2486: loss=96.0983, lr=2.218e-04
+step 2511: loss=83.8829, lr=2.165e-04
+train_loss=81.5218  val_loss=40.6196
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 31/50
+step 2545: loss=57.0931, lr=2.094e-04
+step 2570: loss=57.7776, lr=2.042e-04
+step 2595: loss=64.8408, lr=1.990e-04
+train_loss=63.6177  val_loss=47.5834
+
+Epoch 32/50
+step 2629: loss=53.7844, lr=1.919e-04
+step 2654: loss=56.8978, lr=1.868e-04
+step 2679: loss=63.0773, lr=1.817e-04
+train_loss=62.7174  val_loss=42.7505
+
+Epoch 33/50
+step 2713: loss=49.9766, lr=1.748e-04
+step 2738: loss=52.4535, lr=1.698e-04
+step 2763: loss=53.1056, lr=1.648e-04
+train_loss=58.9464  val_loss=47.2397
+
+Epoch 34/50
+step 2797: loss=54.9829, lr=1.581e-04
+step 2822: loss=59.5617, lr=1.532e-04
+step 2847: loss=58.2960, lr=1.483e-04
+train_loss=58.1746  val_loss=30.6249
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 35/50
+step 2881: loss=65.9119, lr=1.418e-04
+step 2906: loss=202.6871, lr=1.370e-04
+step 2931: loss=165.9406, lr=1.323e-04
+train_loss=154.7014  val_loss=37.8716
+
+Epoch 36/50
+step 2965: loss=60.6082, lr=1.261e-04
+step 2990: loss=61.8231, lr=1.215e-04
+step 3015: loss=60.1786, lr=1.170e-04
+train_loss=59.4854  val_loss=43.0989
+
+Epoch 37/50
+step 3049: loss=46.1864, lr=1.110e-04
+step 3074: loss=45.1612, lr=1.066e-04
+step 3099: loss=52.0100, lr=1.023e-04
+train_loss=53.7053  val_loss=48.2502
+
+Epoch 38/50
+step 3133: loss=46.2386, lr=9.658e-05
+step 3158: loss=48.9367, lr=9.244e-05
+step 3183: loss=50.4396, lr=8.838e-05
+train_loss=50.3081  val_loss=29.1043
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 39/50
+step 3217: loss=65.1883, lr=8.298e-05
+step 3242: loss=59.3935, lr=7.909e-05
+step 3267: loss=55.5595, lr=7.528e-05
+train_loss=54.6756  val_loss=33.6149
+
+Epoch 40/50
+step 3301: loss=45.6037, lr=7.023e-05
+step 3326: loss=54.4554, lr=6.660e-05
+step 3351: loss=54.0087, lr=6.307e-05
+train_loss=52.8341  val_loss=31.8307
+
+Epoch 41/50
+step 3385: loss=47.3866, lr=5.839e-05
+step 3410: loss=48.4120, lr=5.506e-05
+step 3435: loss=49.1972, lr=5.181e-05
+train_loss=49.7304  val_loss=26.1709
+Saved improved checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/best.pt
+
+Epoch 42/50
+step 3469: loss=97.2716, lr=4.754e-05
+step 3494: loss=68.3349, lr=4.450e-05
+step 3519: loss=70.7141, lr=4.156e-05
+train_loss=67.8717  val_loss=27.0451
+
+Epoch 43/50
+step 3553: loss=41.4990, lr=3.771e-05
+step 3578: loss=44.9126, lr=3.499e-05
+step 3603: loss=47.8664, lr=3.237e-05
+train_loss=47.8582  val_loss=27.7846
+
+Epoch 44/50
+step 3637: loss=40.5809, lr=2.897e-05
+step 3662: loss=41.4627, lr=2.658e-05
+step 3687: loss=48.8924, lr=2.430e-05
+train_loss=47.6803  val_loss=30.0543
+
+Epoch 45/50
+step 3721: loss=44.2174, lr=2.135e-05
+step 3746: loss=50.2884, lr=1.931e-05
+step 3771: loss=51.3151, lr=1.737e-05
+train_loss=50.4855  val_loss=33.4855
+
+Epoch 46/50
+step 3805: loss=47.7893, lr=1.490e-05
+step 3830: loss=44.4868, lr=1.321e-05
+step 3855: loss=48.4956, lr=1.163e-05
+train_loss=48.7365  val_loss=32.7080
+
+Epoch 47/50
+step 3889: loss=78.8453, lr=9.648e-06
+step 3914: loss=68.2004, lr=8.320e-06
+step 3939: loss=58.9418, lr=7.102e-06
+train_loss=58.3706  val_loss=35.4330
+
+Epoch 48/50
+step 3973: loss=40.1253, lr=5.620e-06
+step 3998: loss=41.6635, lr=4.661e-06
+step 4023: loss=46.1126, lr=3.812e-06
+train_loss=48.8525  val_loss=26.2954
+
+Epoch 49/50
+step 4057: loss=47.7123, lr=2.837e-06
+step 4082: loss=46.1394, lr=2.251e-06
+step 4107: loss=44.9137, lr=1.777e-06
+train_loss=44.2984  val_loss=29.7449
+
+Epoch 50/50
+step 4141: loss=38.3431, lr=1.313e-06
+step 4166: loss=43.3922, lr=1.104e-06
+step 4191: loss=47.2467, lr=1.007e-06
+train_loss=46.7208  val_loss=27.9423
+
+Test loss: 36.0570
+Saved final checkpoint to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/checkpoints/final.pt
+Saved metrics to results/studies/study_20251124T002001Z/run_015_lr0.0005_hd192_wd0.5_wr0.2/results/metrics_20251124T012245Z.json
