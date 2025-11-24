@@ -73,7 +73,7 @@ This populates `pdata/preprocessed_all.h5`, which the training pipeline consumes
 The training loader builds a residual dataset from `pdata/preprocessed_all.h5`:
 
 - `EmuResidualDataset`:
-  - Lazily opens the HDF5 file per worker.
+  - opens the HDF5 file per worker.
   - Automatically infers sample/species/component axes for `F_box`, `F_true`, and `invariants`.
   - For each index $k$:
     - Reads invariants $x_k \in \mathbb{R}^{27}$.
@@ -116,7 +116,7 @@ The core model is `ResidualFFIModel`, a fully connected residual network:
     - Skip connection when `dim_in == hidden_dim`.
   - Final linear head to `output_dim = 24`.
 - Initialization:
-  - Kaiming initialization for linear layers.
+  - Kai-ming initialization for linear layers.
   - Batch norm weights initialized to 1, biases to 0.
 
 This design is lightweight, stable, and expressive enough to learn small corrections on top of a strong physics prior (Box3D).
@@ -232,8 +232,6 @@ source .venv/bin/activate
 pip install torch h5py pyyaml numpy
 ```
 
-Make sure Julia is installed and visible as `julia` if you want to rerun preprocessing.
-
 ### Commands
 
 - Preprocess (once per dataset/config):
@@ -249,7 +247,7 @@ just train                           # uses config/model.yaml
 just train config=path/to/other.yaml
 ```
 
-You can also call the entrypoints directly:
+call the entrypoints directly:
 
 ```sh
 python3 scripts/run_preprocess.py --config config/pre_process.yaml --julia julia
