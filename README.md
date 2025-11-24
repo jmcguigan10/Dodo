@@ -1,6 +1,6 @@
 # Dodo: Residual-on-Box3D ML Closure for Fast Neutrino Flavor Instability
 
-This repo trains a machine-learning closure for fast neutrino flavor instability (FFI) using **Emu** local QKE simulations and a **Box3D** analytic baseline. The model learns only the **residual correction** on top of Box3D rather than the full closure.
+This repo trains a machine-learning closure for fast neutrino flavor instability (FFI) using **Emu** local QKE simulations and a **Box3D** analytic baseline. The model learns only the **residual correction** on top of Box3D rather than the full closure
 
 High‑level mapping at each spacetime point:
 
