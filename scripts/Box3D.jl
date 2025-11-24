@@ -76,10 +76,8 @@ function closure_params(N::Real, F::AbstractVector{<:Real})
     return (Z, Fhat, base)
 end
 
-# angular grid using Lebedev quadrature on the unit sphere.
-# We map (nθ, nφ) to a target number of points nθ*nφ and choose
-# the closest available Lebedev rule with that many points.
-function angular_grid(nθ::Int, nφ::Int)
+#Levedev grid instead of angular
+function Lebedev_grid(nθ::Int, nφ::Int)
     target = nθ * nφ
     points_available = Lebedev.getavailablepoints()
     idx_min = argmin(abs.(points_available .- target))
@@ -93,8 +91,8 @@ function angular_grid(nθ::Int, nφ::Int)
         dirs[i] = (x[i], y[i], z[i])
     end
 
-    # Lebedev.jl normalizes weights so that sum(w) = 1.
-    # The rest of this code expects weights summing to 4π.
+    # Lebedev pkd in julia normalizes weights so that sum(w) = 1
+    # so we rescale to sum(w) = 4π
     w_scaled = FOUR_PI .* w
 
     return dirs, w_scaled
@@ -133,8 +131,8 @@ function box3d_flux(F::AbstractMatrix{<:Real}; nθ::Int=32, nφ::Int=64)
     Zx,  x̂,  base_x   = closure_params(Nx,  Fx)
     Zx̄, x̂̄, base_x̄  = closure_params(Nx̄, Fx̄)
 
-    # angular grid
-    dirs, w = angular_grid(nθ, nφ)
+    # Lebedev grid
+    dirs, w = Lebedev_grid(nθ, nφ)
     ndir = length(dirs)
 
     fe    = zeros(Float64, ndir)
