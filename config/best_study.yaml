@@ -1,3 +1,4 @@
+# Best-performing hyperparameters from study_20251124T002001Z (run_007)
 data:
   processed_path: "pdata/preprocessed_all.h5"
   upload_dir: "data/uploads"
@@ -8,7 +9,7 @@ data:
   seed: 1337
   pin_memory: true
   drop_last: false
-  target_scale: null  # set to a number (e.g., 1e33) to override automatic scaling
+  target_scale: null
 
 model:
   input_dim: 27
@@ -28,7 +29,7 @@ optimizer:
 scheduler:
   warmup_steps: 500
   min_lr: 1.0e-6
-  max_lr: null  # falls back to optimizer.lr
+  max_lr: null
 
 training:
   epochs: 50
