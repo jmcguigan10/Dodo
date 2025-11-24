@@ -6,3 +6,4 @@
 /.julia_depot/
 /.lib/
 /src/__pycache__/
+/data_conf/
